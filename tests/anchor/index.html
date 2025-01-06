@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			div {
+				height: 400px;
+				background-color: blueviolet;
+				border: 1px solid white;
+			}
+			* {
+				scroll-behavior: smooth;
+			}
+			#price {
+				background-color: chartreuse;
+			}
+			[type="number"] {
+				background-color: red;
+			}
+			input {
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<a href="#services"> services</a>
+		</nav>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis modi accusantium culpa unde. Rem consectetur fuga
+			cupiditate a illo sed! Ipsam laboriosam illo esse at adipisci repudiandae nulla, blanditiis mollitia!
+		</p>
+		<p>
+			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil eligendi consequuntur ducimus animi tempore iusto dolorum amet
+			laboriosam veritatis qui recusandae consectetur quo hic est ullam blanditiis dolores, assumenda voluptate.
+		</p>
+		<p>youcef 1</p>
+		<p>youcef 2</p>
+		<p>youcef 3</p>
+		<p>youcef 4</p>
+		<p>youcef 5</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore incidunt id aut maiores praesentium ipsa!</p>
+		<div>empty</div>
+		<div name="youcef">empty</div>
+		<input class="text-lg" type="color" />
+		<input id="price" type="number" />
+		<input id="price" type="button" />
+		<input type="checkbox" name="" id="" />
+		<div data-user="Youcef">
+			empty
+			<button type="button">Submit</button>
+		</div>
+		<div aria-errormessage="This is an empty div" data-user="Raid">empty</div>
+		<div>empty</div>
+		<section id="services">services</section>
+		<script>
+			const paragraphs = document.querySelectorAll("p");
+			paragraphs.forEach((p) => {
+				p.style.color = "red";
+				p.style.border = "1px solid cyan";
+				p.innerText = p.innerText.length > 150 ? p.innerText.substring(0, 150) + "..." : p.innerText;
+			});
+			const numberInput = document.querySelector('[type="number"]');
+			numberInput.onblur = function (event) {
+				//const elm = event.target; // because its equal to numberInput
+				numberInput.style.opacity = 0.4;
+				if (Number(numberInput.value) < 100) {
+					numberInput.style.border = "1px solid red";
+				}
+			};
+			numberInput.onfocus = function (event) {
+				numberInput.style.opacity = 1;
+				numberInput.style.border = "none";
+			};
+			const button = document.querySelector('button[type="button"]');
+			const buttonParent = button.parentNode;
+			function buttonClick(event) {
+				console.log(event.currentTarget);
+				event.stopPropagation();
+			}
+			button.onclick = buttonClick;
+			buttonParent.onclick = buttonClick;
+		</script>
+	</body>
+</html>

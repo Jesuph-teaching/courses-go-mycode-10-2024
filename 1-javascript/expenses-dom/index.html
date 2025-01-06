@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<menu>
+			<h1>Expenses calculator</h1>
+			<button type="button" id="display_expenses">Display expenses</button>
+			<button type="button" id="add_action">Add Expenses</button>
+			<button type="button" id="get_total_action">Get total</button>
+			<button type="button" id="get_expenses_by_category_action">Get Expenses by category</button>
+			<button type="button" id="close_button">x Close</button>
+		</menu>
+		<section id="expenses_display_show"></section>
+		<section id="total_display"></section>
+		<section id="Expense_by_Category">
+			<div class="form-input">
+				<label for="category">Category </label>
+				<select id="category" required name="category">
+					<option value="Food">Food</option>
+					<option value="Drink">Drink</option>
+					<option value="Junk">Junk</option>
+					<option value="wears">wears</option>
+				</select>
+			</div>
+			<div id="Expense_by_Category_display"></div>
+		</section>
+		<form id="add_Expense" class="hidden">
+			<div class="form-input">
+				<label for="description"> Description </label>
+				<input id="description" required type="text" name="description" />
+			</div>
+			<div class="form-input">
+				<label for="category">Category </label>
+				<select id="category" required name="category">
+					<option value="Food">Food</option>
+					<option value="Drink">Drink</option>
+					<option value="Junk">Junk</option>
+					<option value="wears">wears</option>
+				</select>
+			</div>
+			<div class="form-input">
+				<label for="amount"> amount (DZD) </label>
+				<input id="amount" required type="number" value="100" name="amount" />
+			</div>
+			<div class="form-input">
+				<label for="date"> date </label>
+				<input id="date" required type="date" name="date" />
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		<script src="./script.js"></script>
+	</body>
+</html>
