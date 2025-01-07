@@ -56,7 +56,8 @@ addButton.addEventListener("click", () => {
 });
 getTotalButton.addEventListener("click", () => {
 	initialize();
-	getTotal();
+	const totalExpenses = getTotal();
+	displayTotal.innerHTML = `<h3>${totalExpenses} DZD</h3>`;
 	displayTotal.classList.toggle("hidden");
 });
 addForm.addEventListener("submit", (e) => {
@@ -104,7 +105,7 @@ function getTotal() {
 		total += expense.amount;
 		return total;
 	}, 0);
-	displayTotal.innerHTML = `<h3>${totalExpenses} DZD</h3>`;
+	return totalExpenses;
 }
 function ExpenseToNode(expense) {
 	/* return `<div class="expense-card">
