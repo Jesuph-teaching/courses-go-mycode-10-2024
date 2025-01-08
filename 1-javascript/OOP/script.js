@@ -91,7 +91,8 @@ class Admin extends User {
 }
 const admin1 = new Admin({ firstName: "Mhamed" }, "RH");
 
-admin1.doesHaveAccess("add-new-employee", user1, user2);
+/* admin1.doesHaveAccess("add-new-employee", user1, user2);
 admin1.doesHaveAccess("assign-payment", user1, user2);
-admin1.doesHaveAccess("create-marketing-plan");
+admin1.doesHaveAccess("create-marketing-plan"); */
 //user1.doesHaveAccess("add-new-employee", user1, user2);
+console.log(user1 instanceof Admin, admin1 instanceof Admin);
