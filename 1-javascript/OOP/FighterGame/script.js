@@ -85,6 +85,9 @@ class Mage extends Fighter {
 
 class Referee {
 	constructor() {}
+	gameEnded(winner) {
+		console.log(`fighter ${winner.name} has won`);
+	}
 	startMatch(fighter1, fighter2) {
 		if (!fighter1 || !fighter2) {
 			throw new Error("There is at least one fighter missing");
@@ -93,7 +96,7 @@ class Referee {
 		const interval = setInterval(() => {
 			const opponent = turn === fighter1 ? fighter2 : fighter1;
 			if (!turn.isAlive()) {
-				console.log(`fighter ${turn.name} has died, ${opponent.name} has won`);
+				this.gameEnded(opponent);
 				clearInterval(interval);
 				return;
 			}
