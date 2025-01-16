@@ -1,0 +1,39 @@
+.nav-direction {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 var(--global-padding);
+}
+.nav-direction a {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	transition: color 150ms ease-in;
+}
+.nav-direction a:hover {
+	color: rgb(68, 68, 68);
+}
+.cards {
+	padding: 12px var(--global-padding);
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(6, 1fr);
+}
+
+.brand-card {
+	background-color: var(--card-color);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	padding: 24px;
+	gap: 8px;
+}
+
+.brand-card img {
+	height: 42px;
+}
+.brand-card p {
+	margin: 0;
+}

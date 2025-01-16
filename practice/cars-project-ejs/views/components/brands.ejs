@@ -1,0 +1,4 @@
+<section>
+	<%- include('nav-direction',{ link:'http://google.com', title:'Rent by Brands' }); %>
+	<div class="cards"><% brands.forEach((brand)=> {%> <%- include('brand-card',{title:brand.title,image:brand.image})%> <% }) %></div>
+</section>

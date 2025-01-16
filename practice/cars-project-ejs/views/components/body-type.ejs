@@ -1,0 +1,6 @@
+<section>
+	<%- include('nav-direction',{ link:'http://bmw.com', title:'Rent by body type' }); %>
+	<div class="cards">
+		<% bodyTypes.forEach((bodyType)=> {%> <%- include('brand-card',{title:bodyType.title,image:bodyType.image})%> <% }) %>
+	</div>
+</section>

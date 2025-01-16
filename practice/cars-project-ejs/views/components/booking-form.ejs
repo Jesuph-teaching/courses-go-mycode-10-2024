@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="public/css/booking.css" />
+<form class="booking-form" method="post" action="/book-car">
+	<div class="form-control">
+		<label for="pick-up-location">Pick-up location</label>
+		<div>
+			<span class="ic--outline-location-on icon"></span>
+			<input placeholder="Search a location" type="text" id="pick-up-location" name="pick-up-location" />
+		</div>
+	</div>
+	<div class="form-control">
+		<label for="Pick-up-date">Pick-up date</label>
+		<div>
+			<span class="icon right ic--outline-calendar-today"></span>
+			<input type="date" id="pick-up-date" name="pick-up-date" />
+		</div>
+	</div>
+	<div class="form-control">
+		<label for="drop-off-location">Drop-off location</label>
+		<div>
+			<span class="ic--outline-location-on icon"></span>
+
+			<input placeholder="Search a location" type="text" id="drop-off-location" name="drop-off-location" />
+		</div>
+	</div>
+	<div class="form-control">
+		<label for="drop-off-date">Drop-off date</label>
+		<div>
+			<span class="icon right ic--outline-calendar-today"></span>
+			<input type="date" id="drop-off-date" name="drop-off-date" />
+		</div>
+	</div>
+	<button class="btn btn-primary">Find a Vehicle <span class="ic--round-arrow-forward icon"></span></button>
+</form>
