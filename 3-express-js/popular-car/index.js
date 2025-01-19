@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+const path = require("node:path");
 const app = express();
 const PORT = 4545;
 const fastCars = ["Hellcat", "A45", "C63S", "RS6"];
