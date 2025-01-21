@@ -1,5 +1,8 @@
 # MongoDB Operators
 
+<div style="display: flex; gap: 20px;">
+<div style="flex: 1;">
+
 ### **Operators for Update Operations**
 
 MongoDB provides update operators for modifying documents.
@@ -23,6 +26,10 @@ MongoDB provides update operators for modifying documents.
 
 -   **`$min`**: Updates the field only if the specified value is less than the current value.  
     Example: `{ $min: { price: 50 } }`
+
+
+</div>
+<div style="flex: 1;">
 
 -   **`$max`**: Updates the field only if the specified value is greater than the current value.  
     Example: `{ $max: { age: 40 } }`
@@ -51,7 +58,16 @@ MongoDB provides update operators for modifying documents.
 -   **`$position`**: Specifies the position to insert elements in an array (used with `$push`).  
     Example: `{ $push: { comments: { $each: ["Hello"], $position: 1 } } }`
 
+</div>
+</div>
+
+
 ---
+
+
+
+<div style="display: flex; gap: 20px;">
+<div style="flex: 1;">
 
 ### **Operators for Find Queries**
 
@@ -71,6 +87,9 @@ MongoDB provides query operators for filtering documents.
 -   **`$gte`**: Matches documents where the field is greater than or equal to the specified value.  
     Example: `{ age: { $gte: 25 } }`
 
+</div>
+<div style="flex: 1;">
+
 -   **`$lt`**: Matches documents where the field is less than the specified value.  
     Example: `{ age: { $lt: 25 } }`
 
@@ -82,6 +101,16 @@ MongoDB provides query operators for filtering documents.
 
 -   **`$nin`**: Matches documents where the field’s value is not in a specified array.  
     Example: `{ age: { $nin: [20, 25, 30] } }`
+
+
+
+</div>
+</div>
+
+--- 
+
+<div style="display: flex; gap: 20px;">
+<div style="flex: 1; width:50%;">
 
 #### **Logical Operators**
 
@@ -129,3 +158,181 @@ MongoDB provides query operators for filtering documents.
 
 -   **`$where`**: Matches documents that satisfy a JavaScript expression.  
     Example: `{ $where: "this.age > 25" }`
+</div>
+<div style="flex: 1; width:50%;">
+
+### **MongoDB Aggregation Pipeline Operators**
+
+The aggregation pipeline processes data by passing documents through a series of stages, where each stage performs specific operations. Here are some commonly used aggregation operators grouped by their purpose:
+
+---
+
+### **1. Filtering Operators**
+Used to filter documents in the pipeline.
+
+- **`$match`**: Filters documents based on a condition (similar to `find`).
+  ```javascript
+  db.collection.aggregate([
+    { $match: { status: "active" } }
+  ]);
+  ```
+
+---
+
+### **2. Projection Operators**
+Used to shape the structure of the output documents.
+
+- **`$project`**: Specifies the fields to include or exclude in the output.
+  ```javascript
+  db.collection.aggregate([
+    { $project: { name: 1, age: 1, _id: 0 } }
+  ]);
+  ```
+
+- **`$addFields`**: Adds new fields or modifies existing ones.
+  ```javascript
+  db.collection.aggregate([
+    { $addFields: { fullName: { $concat:
+     ["$firstName", " ", "$lastName"] } } }
+  ]);
+  ```
+
+- **`$unset`**: Removes specified fields.
+  ```javascript
+  db.collection.aggregate([
+    { $unset: "unnecessaryField" }
+  ]);
+  ```
+
+
+### **3. Grouping and Sorting Operators**
+Used to group and arrange documents.
+
+- **`$group`**: Groups documents by a specified key and performs aggregations (e.g., sum, count).
+
+
+
+</div>
+</div>
+
+---
+<div style="display: flex; gap: 20px;">
+<div style="flex: 1; width:50%;">
+
+  ```javascript
+  db.collection.aggregate([
+    { $group: { _id: "$category", 
+    total: { $sum: "$price" } } }
+  ]);
+  ```
+
+- **`$sort`**: Sorts documents in ascending (1) or descending (-1) order.
+  ```javascript
+  db.collection.aggregate([
+    { $sort: { age: -1 } }
+  ]);
+  ```
+
+---
+
+### **4. Array Operators**
+Used to handle array fields.
+
+- **`$unwind`**: Deconstructs an array field into multiple documents (one per array element).
+  ```javascript
+  db.collection.aggregate([
+    { $unwind: "$tags" }
+  ]);
+  ```
+
+---
+
+### **5. Lookup and Joining Operators**
+Used to join collections.
+
+- **`$lookup`**: Performs a left outer join with another collection.
+  ```javascript
+  db.collection.aggregate([
+    {
+      $lookup: {
+        from: "orders",
+        localField: "_id",
+        foreignField: "customerId",
+        as: "orders"
+      }
+    }
+  ]);
+  ```
+
+### **6. Conditional Operators**
+Used to apply conditional logic.
+
+- **`$cond`**: Evaluates a condition and returns a value based on true or false.
+  ```javascript
+  db.collection.aggregate([
+    { $project: { isAdult: { $cond: 
+    { if: { $gte: ["$age", 18] }, 
+    then: true, else: false } } } }
+  ]);
+  ```
+
+</div>
+<div style="flex: 1; width:50%;">
+
+
+
+- **`$ifNull`**: Replaces `null` or missing values with a specified value.
+  ```javascript
+  db.collection.aggregate([
+    { $project: { name: 
+    { $ifNull: ["$name", "Unknown"] } } }
+  ]);
+  ```
+
+---
+
+### **7. Accumulator Operators**
+Used within `$group` or `$project` stages to perform calculations.
+
+- **`$sum`**: Calculates the sum of numeric values.
+- **`$avg`**: Calculates the average value.
+- **`$min`**: Finds the minimum value.
+- **`$max`**: Finds the maximum value.
+- **`$count`**: Counts the number of documents.
+  ```javascript
+  db.collection.aggregate([
+    { $group: { _id: "$category", 
+    totalCount: { $count: {} } } }
+  ]);
+  ```
+
+---
+
+### **8. Miscellaneous Operators**
+Used for additional functionality.
+
+- **`$limit`**: Limits the number of documents in the output.
+  ```javascript
+  db.collection.aggregate([
+    { $limit: 5 }
+  ]);
+  ```
+
+- **`$skip`**: Skips a specified number of documents.
+  ```javascript
+  db.collection.aggregate([
+    { $skip: 10 }
+  ]);
+  ```
+
+- **`$sample`**: Selects random documents.
+  ```javascript
+  db.collection.aggregate([
+    { $sample: { size: 3 } }
+  ]);
+  ```
+
+</div>
+</div>
+
+
