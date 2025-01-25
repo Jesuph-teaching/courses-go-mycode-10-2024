@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.book-card{
+    border: 1px solid black;
+}
+
+.card{
+    @apply w-72 border bg-slate-400/50 ;
+}

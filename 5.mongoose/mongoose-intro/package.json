@@ -1,0 +1,24 @@
+{
+	"name": "mongoose-intro",
+	"version": "1.0.0",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node .",
+		"dev": "nodemon .",
+		"tw": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"ejs": "^3.1.10",
+		"express": "^4.21.2",
+		"mongoose": "^8.9.5"
+	},
+	"devDependencies": {
+		"dotenv": "^16.4.7",
+		"tailwindcss": "^3.4.17"
+	}
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books library</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body>
+    <h1>Library Management</h1>
+    <nav>
+        <a href="/books/add">Add a book</a>
+    </nav>
+    <div class="flex flex-wrap">
+        <% books.forEach((book)=> {%>
+            <div class="card">
+                <div class="">
+                    <h3
+                        class="w-fit font-bold text-3xl bg-gradient-to-r text-transparent from-red-500 to-blue-700 [-webkit-background-clip:text]">
+                        <%=book.name %>
+                    </h3>
+                    <a href="/books/<%=book._id%>" type="button" class=""> edit </a>
+                </div>
+                <h5>
+                    <%= book.author %>
+                </h5>
+                <div>
+                    <p>
+                        <%= book.copyCount %> copies
+                    </p>
+                    <p>Release year: <%= book.releaseYear %>
+                    </p>
+                    <p>Edition: <%= book.edition %>
+                    </p>
+                    <p>Created At: <%= book.createdAt.toLocaleString() %>
+                    </p>
+                    <p>Updated At: <%= book.updatedAt.toLocaleString() %>
+                    </p>
+                    <a href="/books/tag/#<%=book.category%>" class="tag">#<%= book.category %></a>
+                </div>
+            </div>
+            <%}) %>
+    </div>
+</body>
+
+</html>

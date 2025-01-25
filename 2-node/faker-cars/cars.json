@@ -1,0 +1,74 @@
+[
+    {
+        "brand": "Vauxhall",
+        "model": "Model T",
+        "year": 1992,
+        "features": [
+            "olive",
+            "Hybrid"
+        ]
+    },
+    {
+        "brand": "Suzuki",
+        "model": "Explorer",
+        "year": 1961,
+        "features": [
+            "plum",
+            "Electric"
+        ]
+    },
+    {
+        "brand": "Skoda",
+        "model": "Volt",
+        "year": 1991,
+        "features": [
+            "lime",
+            "Electric"
+        ]
+    },
+    {
+        "brand": "Jeep",
+        "model": "Aventador",
+        "year": 2015,
+        "features": [
+            "cyan",
+            "Electric"
+        ]
+    },
+    {
+        "brand": "Ford",
+        "model": "Wrangler",
+        "year": 1986,
+        "features": [
+            "white",
+            "Hybrid"
+        ]
+    },
+    {
+        "brand": "Rivian",
+        "model": "Model Y",
+        "year": 1998,
+        "features": [
+            "sky blue",
+            "Hybrid"
+        ]
+    },
+    {
+        "brand": "Chrysler",
+        "model": "Sentra",
+        "year": 2003,
+        "features": [
+            "purple",
+            "Gasoline"
+        ]
+    },
+    {
+        "brand": "Citroën",
+        "model": "Accord",
+        "year": 1998,
+        "features": [
+            "white",
+            "Hybrid"
+        ]
+    }
+]

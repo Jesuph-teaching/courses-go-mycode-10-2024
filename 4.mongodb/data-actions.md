@@ -45,8 +45,8 @@
   session = db.getMongo().startSession();
   session.startTransaction();
   try {
-      session.getDatabase("test").transactions.insertOne({ transactionId: "T4", fromAccount: "Alice", toAccount: "Eve", amount: 50 });
-      session.getDatabase("test").transactions.insertOne({ transactionId: "T5", fromAccount: "Eve", toAccount: "Charlie", amount: 30 });
+      session.getDatabase("db-name").transactions.insertOne({ transactionId: "T4", fromAccount: "Alice", toAccount: "Eve", amount: 50 });
+      session.getDatabase("db-name").transactions.insertOne({ transactionId: "T5", fromAccount: "Eve", toAccount: "Charlie", amount: 30 });
       session.commitTransaction();
   } catch (e) {
       session.abortTransaction();

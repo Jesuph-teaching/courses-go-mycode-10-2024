@@ -1,0 +1,38 @@
+<form class="text-[34px]" action="<%= action %>" method="post">
+  <div>
+    <label for="author">Author</label>
+    <input type="text" name="author" id="author" value="<%=  book.author %>" />
+  </div>
+  <div>
+    <label for="name">Book name</label>
+    <input type="text" name="name" id="name" value="<%=  book.name %>" />
+  </div>
+  <div>
+    <label for="releaseYear">Year</label>
+    <input
+      type="text"
+      name="releaseYear"
+      id="releaseYear"
+      value="<%=  book.releaseYear %>"
+    />
+  </div>
+  <div>
+    <label for="edition">Edition</label>
+    <input
+      type="text"
+      name="edition"
+      id="edition"
+      value="<%=  book.edition %>"
+    />
+  </div>
+  <div>
+    <label for="category">Category</label>
+    <input
+      type="text"
+      name="category"
+      id="category"
+      value="<%=  book.category %>"
+    />
+  </div>
+  <button type="submit"><%=btnText%></button>
+</form>
