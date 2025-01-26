@@ -11,6 +11,7 @@ const bookSchema = new Schema(
       required: true,
     },
     copyCount: { type: Number, default: 0 },
+    price: { type: Number, required: true },
     edition: { type: Number, default: 1 },
     category: { type: String, required: true },
   },
@@ -30,7 +31,16 @@ const bookSchema = new Schema(
   }
 );
  */
-const bookModel = model("Book", bookSchema);
+bookSchema.virtual("taggedPrice").get(function () {
+  return `${this.price}dzd`;
+});
+bookSchema.methods.addCopies = async function (cc) {
+  this.copyCount += cc;
+  if (this.copyCount < 0) this.copyCount = 0;
+  await this.save();
+};
+
+const bookModel = model("Book", bookSchema, "books");
 // export const mangaModel = model("Manga", mangaSchema, "books");
 
 export default bookModel;

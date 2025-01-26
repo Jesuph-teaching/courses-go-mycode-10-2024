@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
 import express from "express";
-
+import "dotenv/config";
 /* import dotenv from'dotenv';
 dotenv.config() */
-import "dotenv/config";
+// models
 import bookModel from "./models/books.js";
-
+import userModel from "./models/users.js";
+// routers
+import booksRouter from "./routers/books.js";
+import usersRouter from "./routers/users.js";
+mongoose.set("debug", true);
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -17,39 +21,17 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
 
 app.get("/", async (req, res) => {
-  res.locals.books = await bookModel.find();
+  const [users, books] = await Promise.all([
+    userModel.find(),
+    bookModel.find(),
+  ]);
+  res.locals.users = users;
+  res.locals.books = books;
   res.render("home");
 });
-app.get("/books/add", async (req, res) => {
-  res.render("add-books");
-});
-app.get("/books/:bookId", async (req, res) => {
-  const bookId = req.params.bookId;
-  res.locals = { bookId, book: await bookModel.findById(bookId) };
 
-  res.render("edit-books");
-});
-app.post("/books/:bookId", async (req, res) => {
-  const bookId = req.params.bookId;
-  await bookModel.updateOne(
-    { _id: bookId },
-    {
-      $set: req.body,
-    }
-  );
-
-  res.redirect("/");
-});
-
-app.post("/books", async (req, res) => {
-  try {
-    const book = await bookModel.create(req.body);
-    res.redirect("/");
-  } catch (e) {
-    res.send(e.message);
-  }
-});
-
+app.use("/books", booksRouter);
+app.use("/users", usersRouter);
 mongoose
   .connect(process.env.MONGODB_URI, {
     dbName: process.env.MONGODB_DB_NAME,

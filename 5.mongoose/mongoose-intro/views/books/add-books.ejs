@@ -5,12 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Library Management</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
 </head>
 
 <body>
   <h1>Add book</h1>
-  <%- include('components/book-form',{ action:'/books' , btnText:'Add book' ,book:{ name: '' , author:'', releaseYear:
-    1920, edition:1, category:'' }}); %>
+  <%- include('../components/book-form',{ action:'/books' , btnText:'Add book' ,book:{ name: '' , author:'',
+    releaseYear: 1920, edition:1, category:'' }}); %>
 </body>
 
 </html>

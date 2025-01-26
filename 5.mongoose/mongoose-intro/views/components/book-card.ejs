@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="flex justify-between gap-2 items-start flex-wrap">
+        <h3
+            class="w-fit font-bold text-3xl bg-gradient-to-r text-transparent from-red-500 to-blue-700 [-webkit-background-clip:text]">
+            <%=book.name %>
+        </h3>
+        <a href="/books/<%=book._id%>" type="button" class="bg-gray-400 p-2 rounded-lg"> 🖊️ </a>
+        <form action="/books/<%=book._id%>/add-copies" method="post" class="flex">
+            <input type="number" class="w-20" name="copies" placeholder="copies" />
+            <button type=" submit" class="bg-gray-400 p-2 rounded-lg">➕</button>
+        </form>
+        <form action="/books/<%=book._id%>/delete" method="post">
+            <button type="submit" class="bg-gray-400 p-2 rounded-lg">🗑️</button>
+        </form>
+    </div>
+    <h5>
+        <%= book.author %>
+    </h5>
+    <div>
+        <p>
+            <%= book.copyCount %> copies
+        </p>
+        <p>Release year: <%= book.releaseYear %>
+        </p>
+        <p>Edition: <%= book.edition %>
+        </p>
+        <p>Created At: <%= book.createdAt.toLocaleString() %>
+        </p>
+        <p>Updated At: <%= book.updatedAt.toLocaleString() %>
+        </p>
+        <a href="/books/tag/#<%=book.category%>" class="tag">#<%= book.category %></a>
+    </div>
+</div>
