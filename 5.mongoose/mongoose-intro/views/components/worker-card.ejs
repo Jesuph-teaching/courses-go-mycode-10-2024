@@ -16,5 +16,10 @@
         <p>
             <%= user.role %>
         </p>
+        <% user.rentedBooks.forEach(book=>{ %>
+            <span>
+                <%= book.bookId.name %> => <%= book.memberId.fullName %>
+            </span>
+            <%})%>
     </div>
 </div>

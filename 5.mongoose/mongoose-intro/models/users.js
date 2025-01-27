@@ -55,7 +55,10 @@ const userModel = model("User", userSchema);
 const memberSchema = new Schema(
   {
     points: { type: Number, default: 0 },
-    borrowedBooks: { type: [Schema.Types.ObjectId], default: [] },
+    borrowedBooks: {
+      type: [{ type: Schema.Types.ObjectId, ref: "RentHistory" }],
+      default: [],
+    },
   },
   {
     discriminatorKey: "kind",
@@ -70,7 +73,10 @@ const workerSchema = new Schema(
       enum: ["cashier", "book-keeper", "owner"],
       required: true,
     },
-    rentedBooks: { type: [Schema.Types.ObjectId], default: [] },
+    rentedBooks: {
+      type: [{ type: Schema.Types.ObjectId, ref: "RentHistory" }],
+      default: [],
+    },
   },
   {
     discriminatorKey: "kind",

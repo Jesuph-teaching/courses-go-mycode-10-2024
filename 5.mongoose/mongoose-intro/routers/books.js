@@ -39,7 +39,7 @@ booksRouter
       if (!worker) return res.redirect("/?errorMessage=worker Not Found");
       if (!member) return res.redirect("/?errorMessage=member Not Found");
 
-      const newHistory = await rentHistoryModel.create(
+      const [newHistory] = await rentHistoryModel.create(
         [
           {
             bookId: book._id,
@@ -61,7 +61,8 @@ booksRouter
         member.save({ session }),
         book.save({ session }),
       ]);
-      console.log(" ✅ done");
+
+      await session.commitTransaction();
     } catch (err) {
       console.log(err);
       session.abortTransaction();

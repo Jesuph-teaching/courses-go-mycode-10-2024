@@ -10,6 +10,7 @@ import userModel, { memberModel, workerModel } from "./models/users.js";
 import booksRouter from "./routers/books.js";
 import workersRouter from "./routers/workers.js";
 import membersRouter from "./routers/members.js";
+import { populate } from "dotenv";
 mongoose.set("debug", true);
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,8 +25,14 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", async (req, res) => {
   const errorMessage = req.query.errorMessage;
   const [members, workers, books] = await Promise.all([
-    memberModel.find(),
-    workerModel.find(),
+    memberModel.find().populate({
+      path: "borrowedBooks",
+      populate: { path: "bookId memberId workerId" },
+    }),
+    workerModel.find().populate({
+      path: "rentedBooks",
+      populate: { path: "bookId memberId workerId" },
+    }),
     bookModel.find(),
   ]);
   res.locals.members = members;

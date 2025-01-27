@@ -16,5 +16,12 @@
         <p>
             <%= user.points %>
         </p>
+        <ul>
+            <% user.borrowedBooks.forEach(book=>{ %>
+                <li class="">
+                    - <%= book.bookId.name %>
+                </li>
+                <%})%>
+        </ul>
     </div>
 </div>
