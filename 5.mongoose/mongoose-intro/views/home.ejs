@@ -10,29 +10,44 @@
 
 <body class="flex flex-col gap-4">
 
+    <% if(errorMessage) { %>
+        <div class="w-full p-4 bg-yellow-300/70">
+            <p class="text-red-500">
+                <%=errorMessage%>
+            </p>
+        </div>
+        <% } %>
+            <!--  -->
+            <h1 class="text-3xl font-bold ">Library Management</h1>
+            <h3 class="text-xl font-bold">Library's users</h3>
+            <nav>
+                <a href="/members/add">Add a member</a>
+            </nav>
+            <div class="flex flex-wrap">
+                <% members.forEach((user)=> {%>
+                    <%- include("components/member-card",{user}) %>
+                        <%}) %>
 
-    <!--  -->
-    <h1 class="text-3xl font-bold ">Library Management</h1>
-    <h3 class="text-xl font-bold">Library's users</h3>
-    <nav>
-        <a href="/users/add">Add a user</a>
-    </nav>
-    <div class="flex flex-wrap">
-        <% users.forEach((user)=> {%>
-            <%- include("components/user-card",{user}) %>
-                <%}) %>
+            </div>
+            <nav>
+                <a href="/workers/add">Add a worker</a>
+            </nav>
+            <div class="flex flex-wrap">
+                <% workers.forEach((user)=> {%>
+                    <%- include("components/worker-card",{user}) %>
+                        <%}) %>
 
-    </div>
-    <h3 class="text-xl font-bold">Library's books</h3>
-    <nav>
-        <a href="/books/add">Add a book</a>
-    </nav>
-    <div class="flex flex-wrap">
-        <% books.forEach((book)=> {%>
-            <%- include("components/book-card",{book}) %>
-                <%}) %>
+            </div>
+            <h3 class="text-xl font-bold">Library's books</h3>
+            <nav>
+                <a href="/books/add">Add a book</a>
+            </nav>
+            <div class="flex flex-wrap">
+                <% books.forEach((book)=> {%>
+                    <%- include("components/book-card",{book}) %>
+                        <%}) %>
 
-    </div>
+            </div>
 </body>
 
 </html>

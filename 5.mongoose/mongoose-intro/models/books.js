@@ -11,7 +11,7 @@ const bookSchema = new Schema(
       required: true,
     },
     copyCount: { type: Number, default: 0 },
-    price: { type: Number, required: true },
+    /*  price: { type: Number, required: true }, */
     edition: { type: Number, default: 1 },
     category: { type: String, required: true },
   },
@@ -31,9 +31,9 @@ const bookSchema = new Schema(
   }
 );
  */
-bookSchema.virtual("taggedPrice").get(function () {
+/* bookSchema.virtual("taggedPrice").get(function () {
   return `${this.price}dzd`;
-});
+}); */
 bookSchema.methods.addCopies = async function (cc) {
   this.copyCount += cc;
   if (this.copyCount < 0) this.copyCount = 0;

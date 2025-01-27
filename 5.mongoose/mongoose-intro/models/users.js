@@ -20,6 +20,7 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
+    discriminatorKey: "kind",
   }
 );
 
@@ -51,4 +52,30 @@ userSchema.statics.authUser = async function (email, password) {
 };
 
 const userModel = model("User", userSchema);
+const memberSchema = new Schema(
+  {
+    points: { type: Number, default: 0 },
+    borrowedBooks: { type: [Schema.Types.ObjectId], default: [] },
+  },
+  {
+    discriminatorKey: "kind",
+  }
+);
+export const memberModel = userModel.discriminator("Member", memberSchema);
+
+const workerSchema = new Schema(
+  {
+    role: {
+      type: String,
+      enum: ["cashier", "book-keeper", "owner"],
+      required: true,
+    },
+    rentedBooks: { type: [Schema.Types.ObjectId], default: [] },
+  },
+  {
+    discriminatorKey: "kind",
+  }
+);
+
+export const workerModel = userModel.discriminator("Worker", workerSchema);
 export default userModel;

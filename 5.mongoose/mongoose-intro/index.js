@@ -5,10 +5,11 @@ import "dotenv/config";
 dotenv.config() */
 // models
 import bookModel from "./models/books.js";
-import userModel from "./models/users.js";
+import userModel, { memberModel, workerModel } from "./models/users.js";
 // routers
 import booksRouter from "./routers/books.js";
-import usersRouter from "./routers/users.js";
+import workersRouter from "./routers/workers.js";
+import membersRouter from "./routers/members.js";
 mongoose.set("debug", true);
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,17 +22,22 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
 
 app.get("/", async (req, res) => {
-  const [users, books] = await Promise.all([
-    userModel.find(),
+  const errorMessage = req.query.errorMessage;
+  const [members, workers, books] = await Promise.all([
+    memberModel.find(),
+    workerModel.find(),
     bookModel.find(),
   ]);
-  res.locals.users = users;
+  res.locals.members = members;
+  res.locals.workers = workers;
   res.locals.books = books;
+  res.locals.errorMessage = errorMessage;
   res.render("home");
 });
 
 app.use("/books", booksRouter);
-app.use("/users", usersRouter);
+app.use("/members", membersRouter);
+app.use("/workers", workersRouter);
 mongoose
   .connect(process.env.MONGODB_URI, {
     dbName: process.env.MONGODB_DB_NAME,

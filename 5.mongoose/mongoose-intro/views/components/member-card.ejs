@@ -4,8 +4,8 @@
             class="capitalize w-fit font-bold text-3xl bg-gradient-to-r text-transparent from-red-500 to-blue-700 [-webkit-background-clip:text]">
             <%=user.fullName %>
         </h3>
-        <a href="/users/<%=user._id%>" type="button" class="bg-gray-400 p-2 rounded-lg"> 🖊️ </a>
-        <form action="/users/<%=user._id%>/delete" method="post">
+        <a href="/members/<%=user._id%>" type="button" class="bg-gray-400 p-2 rounded-lg"> 🖊️ </a>
+        <form action="/members/<%=user._id%>/delete" method="post">
             <button type="submit" class="bg-gray-400 p-2 rounded-lg">🗑️</button>
         </form>
     </div>
@@ -14,7 +14,7 @@
             <%= user.email %>
         </p>
         <p>
-            <%= user.password %>
+            <%= user.points %>
         </p>
     </div>
 </div>

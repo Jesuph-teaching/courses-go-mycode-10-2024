@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Management</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body>
+  <h1>Rent book</h1>
+  <form action="/books/<%=book._id%>/rent" method="post">
+    <div>
+      <label for="member">Member</label>
+      <select name="memberId" id="member">
+        <option value="" selected disabled>-not selected yet-</option>
+        <% members.forEach(member=>{%>
+          <option value="<%= member._id %>">
+            <%= member.fullName %>
+          </option>
+          <%}); %>
+      </select>
+    </div>
+    <div>
+      <label for="worker">Worker</label>
+      <select name="workerId" id="worker">
+        <option value="" selected disabled>-not selected yet-</option>
+        <% workers.forEach(worker=>{%>
+          <option value="<%= worker._id %>">
+            <%= worker.fullName %>
+          </option>
+          <%}); %>
+      </select>
+    </div>
+    <button class="bg-slate-200 rounded-lg p-2 border border-black" type="submit">Add history rent</button>
+  </form>
+
+</body>
+
+</html>

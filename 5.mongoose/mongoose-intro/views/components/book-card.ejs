@@ -5,6 +5,7 @@
             <%=book.name %>
         </h3>
         <a href="/books/<%=book._id%>" type="button" class="bg-gray-400 p-2 rounded-lg"> 🖊️ </a>
+        <a href="/books/<%=book._id%>/rent" type="button" class="bg-gray-400 p-2 rounded-lg"> 📚 </a>
         <form action="/books/<%=book._id%>/add-copies" method="post" class="flex">
             <input type="number" class="w-20" name="copies" placeholder="copies" />
             <button type=" submit" class="bg-gray-400 p-2 rounded-lg">➕</button>
