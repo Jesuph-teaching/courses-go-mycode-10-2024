@@ -1,0 +1,19 @@
+#root{
+  display: flex;
+  flex-direction:row ;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+   padding: 16px 56px;
+   gap: 100px;
+}
+.card{
+  width: 40%;
+  border:1px solid rgba(0, 0, 0, 0.333);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.358);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.card > div{
+  padding: 16px;
+}
