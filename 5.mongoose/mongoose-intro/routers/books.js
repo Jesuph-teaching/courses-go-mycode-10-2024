@@ -65,7 +65,7 @@ booksRouter
       await session.commitTransaction();
     } catch (err) {
       console.log(err);
-      session.abortTransaction();
+      await session.abortTransaction();
     } finally {
       session.endSession();
     }

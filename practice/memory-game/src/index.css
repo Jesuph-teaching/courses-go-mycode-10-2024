@@ -1,0 +1,17 @@
+@import "tailwindcss";
+body{
+  background-image: url(/images/bg-cover.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+#root{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
