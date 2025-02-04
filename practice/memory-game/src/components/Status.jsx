@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 function Status({ icon, title, value }) {
   return (
     <div className="flex items-center">
-      <div className="rounded-full p-2 bg-white z-10 -mr-4 shadow-2xl border border-black/10">
+      <div className="rounded-full p-3 bg-white z-10 -mr-4 shadow-xl border border-black/10">
         <img src={icon} alt={title} />
       </div>
-      <p className="rounded-full py-2 px-10 bg-white shadow-2xl border border-black/10">
+      <p className="rounded-full py-1 px-10 bg-white shadow-xl border border-black/10">
         {title}: {value}
       </p>
     </div>

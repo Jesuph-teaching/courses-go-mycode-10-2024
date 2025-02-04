@@ -1,26 +1,27 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-export default function Card({ image, index, onSelect, open }) {
+export default function Card({ image, onSelect, open, disabled }) {
   const [flip, setFlip] = useState(open);
   useEffect(() => {
-    console.log(open, index);
-    if (!open) {
+    if (!open && flip) {
       const t = setTimeout(() => {
         setFlip(false);
-      }, 2000);
+      }, 1000);
       return () => {
         clearTimeout(t);
       };
     }
-  }, [open, index]);
+  }, [open, flip]);
 
   return (
     <div
       className="w-full aspect-square relative bg-white rounded-xl overflow-hidden"
       onClick={() => {
-        setFlip(true);
-        onSelect();
+        if (!disabled && !open) {
+          setFlip(true);
+          onSelect();
+        }
       }}
     >
       <img
@@ -44,4 +45,5 @@ Card.propTypes = {
   image: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
