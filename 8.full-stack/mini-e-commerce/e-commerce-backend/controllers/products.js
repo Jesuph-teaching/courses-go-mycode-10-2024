@@ -1,0 +1,33 @@
+import productModel from "../models/product.js";
+
+export async function getProducts(req, res) {
+  try {
+    const products = await productModel.find();
+    res.json({ data: products });
+  } catch (e) {
+    res.json({ error: e.message });
+  }
+}
+
+export async function createProduct(req, res) {
+  try {
+    const product = await productModel.create(req.body);
+    res.json({ data: product });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
+
+export async function updateProduct(req, res) {
+  try {
+    const productId = req.params.productId;
+    const updateProduct = await productModel.findOneAndUpdate(
+      { _id: productId },
+      { $set: req.body },
+      { new: true }
+    );
+    res.json({ message: "Product updated successfully", data: updateProduct });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
