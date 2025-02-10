@@ -31,3 +31,24 @@ export async function updateProduct(req, res) {
     res.status(400).json({ error: e.message });
   }
 }
+export async function getProduct(req, res) {
+  try {
+    const productId = req.params.productId;
+    const product = await productModel.findOne({ _id: productId });
+    if (!product) throw new Error("Product not found");
+    res.json({ message: "Product found successfully", data: product });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
+export async function deleteProduct(req, res) {
+  try {
+    const productId = req.params.productId;
+    const deleteStatus = await productModel.deleteOne({ _id: productId });
+    if (deleteStatus.deletedCount !== 1)
+      throw new Error("Product couldn't be deleted");
+    res.json({ message: `Product ${productId} has been deleted successfully` });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
