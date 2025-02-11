@@ -7,7 +7,7 @@ export async function loginUser(req, res) {
   try {
     const user = await userModel.findOne({ email: email });
     if (!user) throw new Error(`User ${email} not found`);
-    if (!bcrypt.compare(user.password, password))
+    if (!(await bcrypt.compare(password, user.password)))
       throw new Error(`invalid credentials`);
     // generate token for login
     // npx auth secret to generate token secret

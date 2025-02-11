@@ -1,13 +1,39 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { myAPIConfig } from "../api/axiosConfigs";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../api/endpoints/auth";
+import UserContext from "../contexts/user";
 
 export default function LoginForm() {
+  const { setUser } = useContext(UserContext);
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const {
+    mutate: LoginAction,
+    isError,
+    isPending,
+  } = useMutation({
+    mutationFn: login,
 
+    onSuccess: (response) => {
+      if (response.status === 200) {
+        const { token, user } = response.data;
+        localStorage.setItem("token", token);
+        const { firstName, lastName } = user;
+        setUser(user);
+        toast.success(
+          `Logged in successfully : Welcome ${firstName} ${lastName}`
+        );
+      }
+    },
+    onError: (err) => {
+      const { error } = err.response.data;
+
+      toast.error("Login failed: " + error);
+    },
+  });
   function HandleChange(inputName) {
     return (e) => {
       setForm((prev) => ({ ...prev, [inputName]: e.target.value }));
@@ -18,19 +44,7 @@ export default function LoginForm() {
       className="card"
       onSubmit={async (e) => {
         e.preventDefault();
-        try {
-          const response = await myAPIConfig.post("/auth/login", form);
-          if (response.status === 200) {
-            console.log(response.data);
-            const { firstName, lastName } = response.data.user;
-            toast.success(
-              `Logged in successfully : Welcome ${firstName} ${lastName}`
-            );
-          }
-        } catch (err) {
-          const { error } = err.response.data;
-          toast.error("Login failed: " + error);
-        }
+        LoginAction(form);
       }}
     >
       <div className="card-body">
@@ -41,7 +55,7 @@ export default function LoginForm() {
           <input
             type="email"
             name="email"
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
             value={form.email}
             onChange={HandleChange("email")}
           />
@@ -55,10 +69,11 @@ export default function LoginForm() {
             name="password"
             value={form.password}
             onChange={HandleChange("password")}
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
           />
         </fieldset>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={isPending}>
+          {isPending ? <span className="loading" /> : null}
           Login
         </button>
       </div>

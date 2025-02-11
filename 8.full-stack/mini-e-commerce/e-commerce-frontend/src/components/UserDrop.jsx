@@ -5,7 +5,7 @@ export default function UserDrop() {
   const context = useContext(UserContext);
   if (!context) throw new Error("User Provider is not available");
   console.log({ context });
-  const { user } = context;
+  const { user, setUser } = context;
   return (
     <div className="dropdown dropdown-end">
       <div
@@ -39,7 +39,14 @@ export default function UserDrop() {
         </li>
 
         <li>
-          <a>Logout</a>
+          <a
+            onClick={() => {
+              localStorage.removeItem("token");
+              setUser(null);
+            }}
+          >
+            Logout
+          </a>
         </li>
       </ul>
     </div>

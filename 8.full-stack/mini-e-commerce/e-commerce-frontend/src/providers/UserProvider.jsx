@@ -1,13 +1,20 @@
 import UserContext from "../contexts/user";
 import { useQuery } from "@tanstack/react-query";
 import { checkUser } from "../api/endpoints/auth";
+import { useEffect, useState } from "react";
 
 export default function UserProvider({ children }) {
-  const { data, isFetching } = useQuery({
+  const { data: response, isFetching } = useQuery({
     queryKey: ["user"],
     queryFn: checkUser,
     refetchOnWindowFocus: false,
   });
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    if (response) {
+      setUser(response.data.data);
+    }
+  }, [response]);
   if (isFetching)
     return (
       <div className="w-screen h-screen flex justify-center items-center">
@@ -23,7 +30,8 @@ export default function UserProvider({ children }) {
   return (
     <UserContext.Provider
       value={{
-        user: data?.data,
+        user,
+        setUser,
       }}
     >
       {children}
