@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../contexts/user";
+import { Link } from "react-router";
 
 export default function UserDrop() {
   const context = useContext(UserContext);
@@ -38,16 +39,22 @@ export default function UserDrop() {
           </a>
         </li>
 
-        <li>
-          <a
-            onClick={() => {
-              localStorage.removeItem("token");
-              setUser(null);
-            }}
-          >
-            Logout
-          </a>
-        </li>
+        {user ? (
+          <li>
+            <a
+              onClick={() => {
+                localStorage.removeItem("token");
+                setUser(null);
+              }}
+            >
+              Logout
+            </a>
+          </li>
+        ) : (
+          <li>
+            <Link to="/auth">Login</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

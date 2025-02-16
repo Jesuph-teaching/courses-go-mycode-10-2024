@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/endpoints/auth";
 import UserContext from "../contexts/user";
+import { Link } from "react-router";
 
 export default function LoginForm() {
   const { setUser } = useContext(UserContext);
@@ -76,6 +77,13 @@ export default function LoginForm() {
           {isPending ? <span className="loading" /> : null}
           Login
         </button>
+        <p>
+          If you don&apos;t have an account, please{" "}
+          <Link className="text-blue-600" to="/auth/register">
+            register
+          </Link>
+          !
+        </p>
       </div>
     </form>
   );

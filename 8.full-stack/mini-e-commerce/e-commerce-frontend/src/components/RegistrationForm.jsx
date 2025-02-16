@@ -1,6 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { myAPIConfig } from "../api/axiosConfigs";
+import { Link } from "react-router";
+import { useMutation } from "@tanstack/react-query";
+import { register } from "../api/endpoints/auth";
 
 export default function RegistrationForm() {
   const [form, setForm] = useState({
@@ -10,7 +12,24 @@ export default function RegistrationForm() {
     birthDate: "",
     password: "",
   });
-
+  const {
+    mutate: Register,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationFn: register,
+    mutationKey: ["register"],
+    onSuccess: (response) => {
+      const { firstName, lastName } = response.data.user;
+      toast.success(
+        `Registration completed successfully : Welcome ${firstName} ${lastName}`
+      );
+    },
+    onError: (err) => {
+      const { error } = err.response.data;
+      toast.error("Registration failed: " + error);
+    },
+  });
   function HandleChange(inputName) {
     return (e) => {
       setForm((prev) => ({ ...prev, [inputName]: e.target.value }));
@@ -21,29 +40,18 @@ export default function RegistrationForm() {
       className="card"
       onSubmit={async (e) => {
         e.preventDefault();
-        try {
-          const response = await myAPIConfig.post("/auth/register", form);
-          if (response.status === 201) {
-            const { firstName, lastName } = response.data.user;
-            toast.success(
-              `Registration completed successfully : Welcome ${firstName} ${lastName}`
-            );
-          }
-        } catch (err) {
-          const { error } = err.response.data;
-          toast.error("Registration failed: " + error);
-        }
+        Register(form);
       }}
     >
       <div className="card-body">
-        <fieldset className="fieldset">
+        <fieldset className="fieldset ">
           <label className="fieldset-legend" htmlFor="">
             First name
           </label>
           <input
             type="text"
             name="firstName"
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
             value={form.firstName}
             onChange={HandleChange("firstName")}
           />
@@ -55,7 +63,7 @@ export default function RegistrationForm() {
           <input
             type="text"
             name="lastName"
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
             value={form.lastName}
             onChange={HandleChange("lastName")}
           />
@@ -67,7 +75,7 @@ export default function RegistrationForm() {
           <input
             type="date"
             name="birthDate"
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
             value={form.birthDate}
             onChange={HandleChange("birthDate")}
           />
@@ -79,7 +87,7 @@ export default function RegistrationForm() {
           <input
             type="email"
             name="email"
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
             value={form.email}
             onChange={HandleChange("email")}
           />
@@ -93,23 +101,19 @@ export default function RegistrationForm() {
             name="password"
             value={form.password}
             onChange={HandleChange("password")}
-            className="input"
+            className={"input " + (isError ? "input-error" : "")}
           />
         </fieldset>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={isPending}>
           Register
         </button>
-        {/*  <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => {
-            toast.error("Fouzi", {
-              position: "top-right",
-            });
-          }}
-        >
-          toast notification
-        </button> */}
+        <p>
+          If you have an account, please{" "}
+          <Link className="text-blue-600" to="/auth/login">
+            login
+          </Link>
+          !
+        </p>
       </div>
     </form>
   );

@@ -13,11 +13,9 @@ v1Router.use(verifyCredentials);
 v1Router.use("/products", productRouter);
 v1Router.use("/", serverRouter);
 // routes that need to be logged in (authorized)
-v1Router.use(isLoggedIn);
 // orders will be here
-v1Router.use("/orders", orderRouter);
-v1Router.use(isAdmin);
-v1Router.use("/admin/products", managingProductRouter);
+v1Router.use("/orders", isLoggedIn, orderRouter);
+v1Router.use("/admin/products", isLoggedIn, isAdmin, managingProductRouter);
 // todo: implement admin routes
 
 export default v1Router;

@@ -1,17 +1,24 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UserProvider from "./providers/UserProvider";
-import Layout from "./components/Layout";
-import LoginForm from "./components/LoginForm";
+import { BrowserRouter } from "react-router";
 import { Toaster } from "react-hot-toast";
+
+import Routers from "./Routers";
+import Navbar from "./components/Navbar";
+import CartProvider from "./providers/CartProvider";
+
 const queryClient = new QueryClient();
 function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <UserProvider>
-          <Layout>
-            <LoginForm />
-          </Layout>
+          <CartProvider>
+            <BrowserRouter>
+              <Navbar />
+              <Routers />
+            </BrowserRouter>
+          </CartProvider>
         </UserProvider>
       </QueryClientProvider>
       <Toaster />

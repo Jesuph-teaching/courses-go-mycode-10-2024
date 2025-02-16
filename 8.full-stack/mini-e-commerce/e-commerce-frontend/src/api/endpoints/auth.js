@@ -17,7 +17,6 @@ export async function register({ email, password, firstName, lastName }) {
 
 export async function checkUser() {
   const token = localStorage.getItem("token");
-  console.log(token);
   if (!token) throw new Error("You aren't logged in");
   return myAPIConfig.get("/auth", {
     headers: {

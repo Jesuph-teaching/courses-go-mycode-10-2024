@@ -8,7 +8,9 @@ export default function UserProvider({ children }) {
     queryKey: ["user"],
     queryFn: checkUser,
     refetchOnWindowFocus: false,
+    retry: false,
   });
+
   const [user, setUser] = useState(null);
   useEffect(() => {
     if (response) {
