@@ -35,19 +35,18 @@ export async function registerUser(req, res) {
       lastName: lastName,
       role,
     });
-    /*  const user = userModel({
+    /*  const user = new userModel({
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
       });
+      // actions 
       await user.save(); */
     const token = jwt.sign(
       { _id: user._id.toString() },
       process.env.AUTH_SECRET,
-      {
-        expiresIn: 3600 * 24,
-      }
+      { expiresIn: 3600 * 24 }
     );
     res.json({ user: user.toSimpleUser(), token: token });
   } catch (e) {

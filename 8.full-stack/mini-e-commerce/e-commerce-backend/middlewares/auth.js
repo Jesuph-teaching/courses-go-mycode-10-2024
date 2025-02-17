@@ -11,7 +11,7 @@ export async function verifyCredentials(req, res, next) {
     if (!user) throw new Error("User not found or you are not logged in");
     req.user = user;
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
   next();
 }

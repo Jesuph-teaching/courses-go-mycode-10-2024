@@ -9,21 +9,21 @@ import CartProvider from "./providers/CartProvider";
 
 const queryClient = new QueryClient();
 function App() {
-  return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <UserProvider>
-          <CartProvider>
-            <BrowserRouter>
-              <Navbar />
-              <Routers />
-            </BrowserRouter>
-          </CartProvider>
-        </UserProvider>
-      </QueryClientProvider>
-      <Toaster />
-    </>
-  );
+	return (
+		<>
+			<QueryClientProvider client={queryClient}>
+				<UserProvider>
+					<CartProvider>
+						<BrowserRouter>
+							<Navbar />
+							<Routers />
+						</BrowserRouter>
+					</CartProvider>
+				</UserProvider>
+			</QueryClientProvider>
+			<Toaster />
+		</>
+	);
 }
 
 export default App;
