@@ -27,8 +27,8 @@ By the end of this exercise, you will:
 /hooks
   ├── useUser.jsx
   ├── useTodo.jsx
-App.js
-index.js
+App.jsx
+main.jsx
 ```
 
 ---
@@ -41,7 +41,7 @@ npm install @reduxjs/toolkit react-redux
 ---
 
 ## **📌 Step 2: Set Up Redux Store**  
-📂 **`redux/store.js`**  
+📂 **`app/store.js`**  
 - Combine `authSlice` and `todoSlice`  
 - Configure Redux store  
 ```js
@@ -60,7 +60,7 @@ export const store = configureStore({
 ---
 
 ## **📌 Step 3: Implement Authentication Slice**  
-📂 **`redux/authSlice.js`**  
+📂 **`app/authSlice.js`**  
 - User can **Login** (set user data)  
 - User can **Logout**  
 - **Persist state** in `localStorage`  
@@ -69,7 +69,7 @@ export const store = configureStore({
 ---
 
 ## **📌 Step 4: Implement Todo Slice**  
-📂 **`redux/todoSlice.js`**  
+📂 **`app/todoSlice.js`**  
 - **Load todos** from `localStorage`  
 - **Save todos** on every change  
 - **Add, Remove, Toggle Completion**  
@@ -111,7 +111,7 @@ import Navbar from "./components/Navbar";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store } from "./app/store";
 
 const App = () => (
  <Provider store={store}>
