@@ -7,21 +7,7 @@ function cartReducer(state, action) {
 			const { quantity = 1, product } = action.payload;
 			if (quantity < 0) return;
 			const newCart = [...state];
-			const productId = product._id;
-			const existInCart = newCart.some(
-				(c) => c.product._id === productId,
-			);
-			if (existInCart) {
-				newCart.map((c) => {
-					if (c.product._id === productId) {
-						c.quantity += quantity;
-					}
-					return c;
-				});
-			} else {
-				newCart.push({ product, quantity });
-			}
-			localStorage.setItem("cart", JSON.stringify(newCart));
+
 			return newCart;
 		}
 		case "removeFromCart": {

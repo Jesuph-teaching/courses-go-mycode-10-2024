@@ -1,9 +1,15 @@
-import { useContext } from "react";
-import UserContext from "../contexts/user";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../app/slices/user";
 export default function useUser() {
-	const context = useContext(UserContext);
-	if (context) {
-		return context;
-	} else throw new Error("Context for User is not available");
+	const { user, isAdmin, isLoggedIn } = useSelector((store) => store.user);
+	const dispatch = useDispatch();
+
+	return {
+		setUser: (newUser) => {
+			dispatch(setUser(newUser));
+		},
+		user,
+		isAdmin,
+		isLoggedIn,
+	};
 }

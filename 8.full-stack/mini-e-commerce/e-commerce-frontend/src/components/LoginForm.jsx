@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/endpoints/auth";
-import UserContext from "../contexts/user";
 import { Link } from "react-router";
+import { useUser } from "../hooks";
 
 export default function LoginForm() {
-	const { setUser } = useContext(UserContext);
+	const { setUser } = useUser();
 	const [form, setForm] = useState({
 		email: "",
 		password: "",

@@ -9,7 +9,7 @@ export default function Navbar() {
 					Mini E-COMMERCE
 				</a>
 			</div>
-			<div className="flex gap-4 ">
+			<div className="flex gap-4">
 				<CartPopup />
 				<UserDrop />
 			</div>

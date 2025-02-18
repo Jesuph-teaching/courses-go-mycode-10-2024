@@ -1,12 +1,9 @@
-import { useContext } from "react";
-import UserContext from "../contexts/user";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function UserDrop() {
-	const context = useContext(UserContext);
-	if (!context) throw new Error("User Provider is not available");
-	console.log({ context });
-	const { user, setUser } = context;
+	const { user, isAdmin } = useSelector((store) => store.user);
+	console.log(user, isAdmin);
 	return (
 		<div className="dropdown dropdown-end">
 			<div

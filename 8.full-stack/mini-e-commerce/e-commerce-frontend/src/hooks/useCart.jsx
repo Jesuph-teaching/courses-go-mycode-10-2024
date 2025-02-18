@@ -1,9 +1,18 @@
-import { useContext } from "react";
-import CartContext from "../contexts/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../app/slices/cart";
 
 export default function useCart() {
-	const context = useContext(CartContext);
-	if (context) {
-		return context;
-	} else throw new Error("Context for User is not available");
+	const { cart, total, cartCount } = useSelector((store) => store.cart);
+	const dispatch = useDispatch();
+	return {
+		cart,
+		total,
+		cartCount,
+		addToCart: (product, quantity = 1) => {
+			dispatch(addToCart({ product, quantity }));
+		},
+		removeFromCart: (productId, quantity = 1) => {
+			dispatch(removeFromCart({ productId, quantity }));
+		},
+	};
 }
