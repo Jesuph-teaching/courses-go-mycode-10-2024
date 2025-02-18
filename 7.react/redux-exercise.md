@@ -90,12 +90,12 @@ export const store = configureStore({
 
 ---
 
-### 📂 **`components/TodoList.js`**  
+### 📂 **`components/TodoList.jsx`**  
 - Render **Todo Items**  
 
 ---
 
-### 📂 **`components/TodoItem.js`**  
+### 📂 **`components/TodoItem.jsx`**  
 - **Mark as Completed**  
 - **Delete Todo**  
 
@@ -103,7 +103,7 @@ export const store = configureStore({
 ---
 
 ## **📌 Step 6: Build the Main App**  
-📂 **`App.js`**  
+📂 **`App.jsx`**  
 
 ```js
 import React from "react";
