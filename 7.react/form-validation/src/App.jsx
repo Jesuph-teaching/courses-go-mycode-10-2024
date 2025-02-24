@@ -27,95 +27,87 @@ const issueReportValidationSchema = Yup.object({
 });
 function App() {
   return (
-    <>
-      <Formik
-        initialValues={{
+    <Formik
+      initialValues={{
+        name: "",
+        subjects: [""],
+        email: "",
+        message: "",
+        serverDetails: {
           name: "",
-          subjects: [""],
-          email: "",
-          message: "",
-          serverDetails: {
-            name: "",
-            badgeNumber: 0,
-          },
-        }}
-        validationSchema={issueReportValidationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        <Form className="form">
-          <Field className="" placeholder="name" name="name" type="text" />
-          <ErrorMessage component="p" name="name" className="error-message" />
-          <FieldArray
-            name="subjects"
-            render={({ form, push, remove }) => {
-              return (
-                <>
-                  {form.values.subjects.map((_, i) => (
-                    <div className="subjects" key={i}>
-                      <Field
-                        className=""
-                        placeholder={"Subjects number " + i}
-                        name={"subjects." + i}
-                        type="text"
-                      />
-                      <button type="button" onClick={() => remove(i)}>
-                        -
-                      </button>
-                    </div>
-                  ))}
-                  {form.values.subjects.length < 4 && (
-                    <button type="button" onClick={() => push("")}>
-                      +
-                    </button>
-                  )}
-                </>
-              );
-            }}
-          />
-          <Field className="" placeholder="email" name="email" type="email" />
-          <ErrorMessage component="p" name="email" className="error-message" />
+          badgeNumber: 0,
+        },
+      }}
+      validationSchema={issueReportValidationSchema}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      <Form className="form">
+        <Field className="" placeholder="name" name="name" type="text" />
+        <ErrorMessage component="p" name="name" className="error-message" />
+        <FieldArray
+          name="subjects"
+          render={({ form, push, remove }) => (
+            <>
+              {form.values.subjects.map((_, i) => (
+                <div className="subjects" key={i}>
+                  <Field
+                    className=""
+                    placeholder={"Subjects number " + i}
+                    name={"subjects." + i}
+                    type="text"
+                  />
+                  <button type="button" onClick={() => remove(i)}>
+                    -
+                  </button>
+                </div>
+              ))}
+              {form.values.subjects.length < 4 && (
+                <button type="button" onClick={() => push("")}>
+                  +
+                </button>
+              )}
+            </>
+          )}
+        />
+        <Field className="" placeholder="email" name="email" type="email" />
+        <ErrorMessage component="p" name="email" className="error-message" />
 
-          <Field
-            className=""
-            placeholder="message"
-            name="message"
-            component="textarea"
-            type="text"
-          />
-          <ErrorMessage
-            component="p"
-            name="message"
-            className="error-message"
-          />
+        <Field
+          className=""
+          placeholder="message"
+          name="message"
+          component="textarea"
+          type="text"
+        />
+        <ErrorMessage component="p" name="message" className="error-message" />
 
-          <Field
-            className=""
-            placeholder="Server name"
-            name="serverDetails.name"
-            type="text"
-          />
-          <ErrorMessage
-            component="p"
-            name="serverDetails.name"
-            className="error-message"
-          />
-          <Field
-            className=""
-            placeholder="Server badge"
-            name="serverDetails.badgeNumber"
-            type="number"
-          />
-          <ErrorMessage
-            component="p"
-            name="serverDetails.badgeNumber"
-            className="error-message"
-          />
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
-    </>
+        <Field
+          className=""
+          placeholder="Server name"
+          name="serverDetails.name"
+          type="text"
+        />
+        <ErrorMessage
+          component="p"
+          name="serverDetails.name"
+          className="error-message"
+        />
+        <Field
+          className=""
+          placeholder="Server badge"
+          name="serverDetails.badgeNumber"
+          type="number"
+        />
+        <ErrorMessage
+          component="p"
+          name="serverDetails.badgeNumber"
+          className="error-message"
+        />
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
   );
 }
 
