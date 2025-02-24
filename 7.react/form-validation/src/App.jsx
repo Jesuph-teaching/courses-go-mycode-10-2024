@@ -1,6 +1,7 @@
 import "./App.css";
 import { Field, Form, Formik, FieldArray, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
 const nameSchema = Yup.string()
   .required("name is required")
   .min(3, "the name must be at least 3 characters")
@@ -15,9 +16,12 @@ const issueReportValidationSchema = Yup.object({
   message: Yup.string().max(400, "The message must be at most 400 characters"),
   serverDetails: Yup.object({
     name: nameSchema,
-    badgeNumber: Yup.number().test((val) => {
-      if (val.toString().length <= 4) return true;
-      return new Error("badgeNumber must be at most composed of 4 digits");
+    badgeNumber: Yup.number().test({
+      message: "The badge number must be in four digits",
+      test: (val) => {
+        if (val.toString().length <= 4) return true;
+        return false;
+      },
     }),
   }),
 });
