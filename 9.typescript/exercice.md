@@ -12,10 +12,17 @@ Students will:
 
 ### **Pre steps**
 
-1. create a new folder and change the directory: - `mkdir ts-project` - `cd ./ts-project`
-2. initialize the project : - `npm init -y`
-3. installing typescript : - `npm i typescript -D`
-4. adding tsx (optional) : - package.json
+1. create a new folder and change the directory:
+   - `mkdir ts-project`
+   - `cd ./ts-project`
+2. initialize the project :
+   - `npm init -y`
+3. installing typescript :
+   - `npm i typescript -D`
+4. adding tsx (optional) :
+   - `npm i tsx -D`
+5. Setting scripts :
+   - package.json
 
 ```json
 {
@@ -28,7 +35,7 @@ Students will:
 }
 ```
 
-5. start the development
+1. start the development
    - `npm run dev`
 
 ---
