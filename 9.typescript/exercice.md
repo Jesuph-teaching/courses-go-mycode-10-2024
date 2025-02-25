@@ -1,4 +1,4 @@
-## **🚀 Exercise: Advanced Student Information System**
+## **Exercise: Advanced Student Information System**
 ### **Objective**  
 Students will:  
 1. Use **union types** for handling multiple values.  
