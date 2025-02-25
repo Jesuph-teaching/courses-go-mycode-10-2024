@@ -1,7 +1,7 @@
 type GenderT = "Male" | "Female";
 interface BookI {
   name: string;
-  stock: number;
+  stock?: number;
 }
 /* interface MangaI {
   title: string;
