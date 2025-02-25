@@ -43,5 +43,4 @@ Address: Oran, Postal Code: 31000
 
 ### **🔹 Additional Challenges**
 1. Add a **`level`** property (union type: `"beginner" | "intermediate" | "advanced"`).  
-2. Modify the function to check if the contact is an email or phone using `typeof`.  
-3. Create a function that returns students **from a specific city**.  
+2. Create a function that returns students **from a specific city**.  
