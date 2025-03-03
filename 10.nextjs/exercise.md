@@ -15,11 +15,11 @@ Create a Next.js application to manage and persistently track expenses across mu
    - Navigate to the project folder: `cd expense-tracker`.
    - Start the development server: `npm run dev`.
 2. Use the `app/` directory (App Router) for routing, creating a page for each feature.
-3. Add a basic navigation component (e.g., in `app/layout.js`) to link between pages.
+3. Add a basic navigation component (e.g., in `app/layout.tsx`) to link between pages.
 
 #### Step 2: Initialize the Expense Database
 
-1. Create a shared utility file (e.g., `lib/expenseUtils.js`) to handle persistent data:
+1. Create a shared utility file (e.g., `lib/expenseUtils.ts`) to handle persistent data:
    - Define `loadExpenses()`: Loads the expenses array from `localStorage`, returning an empty array if no data exists.
    - Define `saveExpenses(expenses)`: Saves the expenses array to `localStorage`.
 2. Each expense object should include:
@@ -33,7 +33,7 @@ Create a Next.js application to manage and persistently track expenses across mu
 
 Organize the app into separate pages under the `app/` directory. Each page will handle one specific action.
 
-1. **Add an Expense** (`app/add-expense/page.js`)
+1. **Add an Expense** (`app/add-expense/page.tsx`)
 
    - Purpose: Allow users to add a new expense.
    - UI: Create a form with fields for:
@@ -48,7 +48,7 @@ Organize the app into separate pages under the `app/` directory. Each page will 
      - Display a success message (e.g., a temporary notification).
    - Navigation: Include a link back to the home page (`/`).
 
-2. **Get Total Expenses** (`app/total-expenses/page.js`)
+2. **Get Total Expenses** (`app/total-expenses/page.tsx`)
 
    - Purpose: Display the total amount of all expenses.
    - UI: Show a single value representing the sum of all expense amounts.
@@ -58,7 +58,7 @@ Organize the app into separate pages under the `app/` directory. Each page will 
      - Display the result in a readable format (e.g., "Total Expenses: $200.00").
    - Navigation: Link to other pages (e.g., add expense, report).
 
-3. **Get Expenses by Category** (`app/expenses-by-category/page.js`)
+3. **Get Expenses by Category** (`app/expenses-by-category/page.tsx`)
 
    - Purpose: Filter and display expenses by category.
    - UI:
@@ -70,7 +70,7 @@ Organize the app into separate pages under the `app/` directory. Each page will 
      - Show the filtered results with details (description, amount, date).
    - Navigation: Link to related pages.
 
-4. **Get Expenses by Month** (`app/expenses-by-month/page.js`)
+4. **Get Expenses by Month** (`app/expenses-by-month/page.tsx`)
 
    - Purpose: Filter and display expenses for a specific month.
    - UI:
@@ -82,7 +82,7 @@ Organize the app into separate pages under the `app/` directory. Each page will 
      - Show the filtered results.
    - Navigation: Link to other pages.
 
-5. **Find the Most Expensive Expense** (`app/most-expensive/page.js`)
+5. **Find the Most Expensive Expense** (`app/most-expensive/page.tsx`)
 
    - Purpose: Show the highest-cost expense.
    - UI: Display the details of the most expensive expense (description, amount, category, date).
@@ -92,7 +92,7 @@ Organize the app into separate pages under the `app/` directory. Each page will 
      - Display its details.
    - Navigation: Link to the home page or report page.
 
-6. **Generate an Expense Report** (`app/expense-report/page.js`)
+6. **Generate an Expense Report** (`app/expense-report/page.tsx`)
    - Purpose: Provide a detailed summary of expenses.
    - UI: Show:
      - Total amount of all expenses.
@@ -107,7 +107,7 @@ Organize the app into separate pages under the `app/` directory. Each page will 
 
 Add these as additional pages or enhance existing ones:
 
-1. **Delete an Expense** (`app/delete-expense/page.js`)
+1. **Delete an Expense** (`app/delete-expense/page.tsx`)
 
    - Purpose: Allow users to remove an expense.
    - UI:
@@ -116,14 +116,14 @@ Add these as additional pages or enhance existing ones:
    - Action:
      - Load expenses, filter out the matching expense, and save the updated array.
 
-2. **Filter Expenses by Amount Range** (`app/expenses-by-range/page.js`)
+2. **Filter Expenses by Amount Range** (`app/expenses-by-range/page.tsx`)
 
    - Purpose: Show expenses within a specified amount range.
    - UI: Add two number inputs for minimum and maximum amounts, plus a submit button.
    - Action:
      - Load expenses, filter based on the range, and display the results.
 
-3. **Home Page with Navigation** (`app/page.js`)
+3. **Home Page with Navigation** (`app/page.tsx`)
    - Purpose: Serve as an interactive menu.
    - UI: Add buttons or links to navigate to each feature page (e.g., "Add Expense", "View Report").
    - Action: No logic beyond navigation; optionally display a summary or welcome message.
@@ -137,15 +137,15 @@ Add these as additional pages or enhance existing ones:
 
 #### Sample Page Structure
 
-- `app/layout.js`: Root layout with navigation (e.g., `<nav>` with links to all pages).
-- `app/page.js`: Home page with links/buttons.
-- `app/add-expense/page.js`: Form to add expenses.
-- `app/total-expenses/page.js`: Total display.
-- `app/expenses-by-category/page.js`: Category filter.
-- `app/expenses-by-month/page.js`: Month filter.
-- `app/most-expensive/page.js`: Most expensive expense.
-- `app/expense-report/page.js`: Full report.
-- `lib/expenseUtils.js`: Shared `loadExpenses` and `saveExpenses` functions.
+- `app/layout.tsx`: Root layout with navigation (e.g., `<nav>` with links to all pages).
+- `app/page.tsx`: Home page with links/buttons.
+- `app/add-expense/page.tsx`: Form to add expenses.
+- `app/total-expenses/page.tsx`: Total display.
+- `app/expenses-by-category/page.tsx`: Category filter.
+- `app/expenses-by-month/page.tsx`: Month filter.
+- `app/most-expensive/page.tsx`: Most expensive expense.
+- `app/expense-report/page.tsx`: Full report.
+- `lib/expenseUtils.ts`: Shared `loadExpenses` and `saveExpenses` functions.
 
 #### Requirements
 
