@@ -1,7 +1,3 @@
-Below is an adapted version of the instructions for creating an **Expense Tracker with Persistent Data** in **Next.js**, splitting the functionality across multiple pages instead of a single page. This leverages Next.js's file-based routing system to organize actions into separate routes (e.g., `/add-expense`, `/total-expenses`, etc.). I'll avoid providing code and focus on the structure and instructions.
-
----
-
 ### Expense Tracker with Persistent Data in Next.js (Multi-Page)
 
 #### Objective
