@@ -1,3 +1,6 @@
+/*
+ CREATE DATABASE gomycode
+ */
 use gomycode;
 /* DROP TABLE book_author;
  DROP TABLE loan;
