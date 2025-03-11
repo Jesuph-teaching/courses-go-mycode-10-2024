@@ -1,8 +1,9 @@
-import userModel from "../models/user.js";
+import userModel, { UserInstanceMethods } from "../models/user.js";
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-export async function loginUser(req, res) {
+export async function loginUser(req: Request, res: Response) {
   const { email, password } = req.body;
   try {
     const user = await userModel.findOne({ email: email });
@@ -21,11 +22,11 @@ export async function loginUser(req, res) {
     res.json({ user: user.toSimpleUser(), token: token });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ error: e.message });
+    res.status(400).json({ error: (e as Error).message });
   }
 }
 
-export async function registerUser(req, res) {
+export async function registerUser(req: Request, res: Response) {
   try {
     const { email, password, firstName, lastName, role } = req.body;
     const user = await userModel.create({
@@ -35,14 +36,6 @@ export async function registerUser(req, res) {
       lastName: lastName,
       role,
     });
-    /*  const user = new userModel({
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      });
-      // actions 
-      await user.save(); */
     const token = jwt.sign(
       { _id: user._id.toString() },
       process.env.AUTH_SECRET,
@@ -50,10 +43,13 @@ export async function registerUser(req, res) {
     );
     res.json({ user: user.toSimpleUser(), token: token });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+    res.status(400).json({ error: (e as Error).message });
   }
 }
 
-export function checkUser(req, res) {
-  res.json({ user: req.user.toSimpleUser() });
+export function checkUser(
+  req: Request & { user?: UserI & UserInstanceMethods },
+  res: Response
+) {
+  res.json({ user: req.user?.toSimpleUser() });
 }
