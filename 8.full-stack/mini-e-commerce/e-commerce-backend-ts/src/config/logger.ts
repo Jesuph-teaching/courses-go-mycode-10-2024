@@ -1,4 +1,4 @@
-import pino, { destination } from "pino";
+import { pino, destination } from "pino";
 
 const logger = pino(
   { name: "logger" },

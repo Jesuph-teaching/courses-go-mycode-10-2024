@@ -1,10 +1,12 @@
-import { Model, Schema, model } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
-export interface UserInstanceMethods {
-  toSimpleUser(): void;
+import { Types } from "mongoose";
+export interface UserD extends Document<Types.ObjectId>, UserI<Types.ObjectId> {
+  password: string;
+  toSimpleUser(): UserI;
 }
 // create the schema object of the user
-const userSchema = new Schema<UserI, Model<UserI>, UserInstanceMethods>(
+const userSchema = new Schema<UserD>(
   {
     firstName: { type: String, minLength: 3, maxLength: 20, required: true },
     lastName: { type: String, minLength: 3, maxLength: 20, required: true },
@@ -28,14 +30,16 @@ userSchema.pre("save", async function () {
   }
 });
 
-userSchema.methods.toSimpleUser = function () {
+userSchema.methods.toSimpleUser = function (): UserI {
   return {
     firstName: this.firstName,
     lastName: this.lastName,
     email: this.email,
+    _id: this._id.toString(),
+    role: this.role,
   };
 };
 // create the model
-const userModel = model("User", userSchema);
+const userModel = model<UserD>("User", userSchema);
 
 export default userModel;

@@ -3,7 +3,6 @@ import { BrowserRouter } from "react-router";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import Routers from "./Routers";
-import Navbar from "./components/Navbar";
 import store from "./app/store";
 import Authenticator from "./providers/Authenticator";
 
@@ -15,7 +14,6 @@ function App() {
         <Provider store={store}>
           <Authenticator>
             <BrowserRouter>
-              <Navbar />
               <Routers />
             </BrowserRouter>
           </Authenticator>

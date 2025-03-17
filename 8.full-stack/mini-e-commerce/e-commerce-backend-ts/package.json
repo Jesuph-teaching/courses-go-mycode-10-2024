@@ -1,7 +1,7 @@
 {
   "name": "e-commerce-backend",
   "version": "0.0.0",
-  "main": "./build/index.js",
+  "main": "./build/e-commerce-backend-ts/src/index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon --ext .ts,.tsx --exec \"tsc & node .\"",

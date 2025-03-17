@@ -1,5 +1,5 @@
-interface ProductI {
-  _id: string;
+interface ProductI<ID = string> {
+  _id: ID;
   name: string;
   description: string;
   price: {

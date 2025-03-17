@@ -1,10 +1,12 @@
-import { Schema, Types, model } from "mongoose";
-
-const orderSchema = new Schema<OrderI<Types.ObjectId>>(
+import { Document, Schema, Types, model } from "mongoose";
+export interface OrderD
+  extends OrderI<Types.ObjectId>,
+    Document<Types.ObjectId> {}
+const orderSchema = new Schema<OrderD>(
   {
     cart: [
       {
-        productId: {
+        product: {
           type: Schema.Types.ObjectId,
           ref: "Product",
           required: true,
@@ -42,6 +44,6 @@ const orderSchema = new Schema<OrderI<Types.ObjectId>>(
   }
 );
 
-const orderModel = model("Order", orderSchema);
+const orderModel = model<OrderD>("Order", orderSchema);
 
 export default orderModel;

@@ -1,6 +1,6 @@
 import { myAPIConfig } from "../axiosConfigs";
 export interface AuthResponseT {
-  user: SimpleUserI;
+  user: UserI;
   token: string;
 }
 export async function login({ email, password }: BaseUserI) {

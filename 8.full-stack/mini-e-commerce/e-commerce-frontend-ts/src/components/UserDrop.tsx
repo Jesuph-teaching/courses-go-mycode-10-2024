@@ -36,16 +36,21 @@ export default function UserDrop() {
         </li>
 
         {user ? (
-          <li>
-            <a
-              onClick={() => {
-                localStorage.removeItem("token");
-                setUser(null);
-              }}
-            >
-              Logout
-            </a>
-          </li>
+          <>
+            <li>
+              <Link to={"/dashboard"}>admin dashboard</Link>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  setUser(null);
+                }}
+              >
+                Logout
+              </a>
+            </li>
+          </>
         ) : (
           <li>
             <Link to="/auth">Login</Link>

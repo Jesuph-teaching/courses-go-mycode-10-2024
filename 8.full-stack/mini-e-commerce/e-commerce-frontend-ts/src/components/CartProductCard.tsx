@@ -1,3 +1,4 @@
+import DZD from "@client/utils/pricing";
 import useCart from "../hooks/useCart";
 
 export default function CartProductCard({ product, quantity }: ProductCartI) {
@@ -10,12 +11,12 @@ export default function CartProductCard({ product, quantity }: ProductCartI) {
           "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
         }
         alt="product image"
-        className="h-28 w-24 object-cover"
+        className="w-32 object-cover"
       />
-      <div className="flex flex-col">
-        <h4>{product.name}</h4>
+      <div className="flex flex-col p-2 gap-1">
+        <h4 className="text-xl font-bold">{product.name}</h4>
         <h5>quantity:{quantity}</h5>
-        <h5>price:{product.price.current}</h5>
+        <h5>price:{DZD.ar.format(product.price.current)}</h5>
         <div className="flex gap-2">
           <button
             className="btn"

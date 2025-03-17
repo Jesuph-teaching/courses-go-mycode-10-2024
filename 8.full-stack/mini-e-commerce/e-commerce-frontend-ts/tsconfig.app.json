@@ -33,11 +33,14 @@
       ],
       ":client/*": [
         "src/hooks/*"
+      ],
+      "@common/*": [
+        "../common/*"
       ]
     }
   },
   "include": [
     "src",
-    "../types"
+    "../common"
   ]
 }

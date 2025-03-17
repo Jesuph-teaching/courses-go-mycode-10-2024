@@ -22,6 +22,10 @@ export default defineConfig({
         find: ":client",
         replacement: path.resolve(__dirname, "./src/hooks"),
       },
+      {
+        find: "@common",
+        replacement: path.resolve(__dirname, "../common"),
+      },
     ],
   },
 });

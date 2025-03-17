@@ -5,7 +5,7 @@ export default function useUser() {
   const dispatch = useAppDispatch();
 
   return {
-    setUser: (newUser: SimpleUserI | null) => {
+    setUser: (newUser: UserI | null) => {
       dispatch(setUser(newUser));
     },
     user,

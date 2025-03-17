@@ -1,4 +1,4 @@
-import { addToCart, removeFromCart } from "../app/slices/cart";
+import { addToCart, clearCart, removeFromCart } from "../app/slices/cart";
 import { useAppDispatch, useAppSelector } from "./redux";
 
 export default function useCart() {
@@ -13,6 +13,9 @@ export default function useCart() {
     },
     removeFromCart: (productId: string, quantity = 1) => {
       dispatch(removeFromCart({ product: productId, quantity }));
+    },
+    clearCart: () => {
+      dispatch(clearCart());
     },
   };
 }

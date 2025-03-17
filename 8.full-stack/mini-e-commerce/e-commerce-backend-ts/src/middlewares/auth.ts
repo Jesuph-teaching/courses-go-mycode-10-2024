@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import userModel from "../models/user.js";
+import userModel, { UserD } from "../models/user.js";
 import { NextFunction, Request, Response } from "express";
 
 export async function verifyCredentials(
-  req: Request & { user?: UserI },
+  req: Request & { user?: UserD },
   res: Response,
   next: NextFunction
 ) {

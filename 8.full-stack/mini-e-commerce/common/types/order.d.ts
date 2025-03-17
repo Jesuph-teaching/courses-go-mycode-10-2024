@@ -14,7 +14,7 @@ type OrderStatusT =
   | "delivered"
   | "cancelled"
   | "returned";
-interface OrderI<ID> extends ShopOrderI {
+interface OrderI<ID = string> extends ShopOrderI {
   _id: ID;
   userId: ID;
   total: number;

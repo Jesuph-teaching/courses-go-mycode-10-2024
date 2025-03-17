@@ -1,5 +1,5 @@
-/* INSERT INTO book(publication_year, title, publisher)
- VALUES(1949, '1984', 'Secker & Warburg'); */
+INSERT INTO book(publication_year, title, publisher)
+VALUES(1949, '1984', 'Secker & Warburg');
 /* SELECT *
  FROM book
  WHERE book_id > 1; */

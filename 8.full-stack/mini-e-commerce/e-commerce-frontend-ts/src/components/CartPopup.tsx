@@ -1,12 +1,13 @@
 import { Link } from "react-router";
 import useCart from "../hooks/useCart";
 import CartProductCard from "./CartProductCard";
+import DZD from "@client/utils/pricing";
 
 export default function CartPopup() {
   const { cart, cartCount, total } = useCart();
 
   return (
-    <div className="dropdown dropdown-end">
+    <div id="CartPopup" className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
         <div className="indicator">
           <svg
@@ -39,7 +40,7 @@ export default function CartPopup() {
               quantity={elm.quantity}
             />
           ))}
-          <span className="text-info">Subtotal: ${total.toFixed(2)}</span>
+          <span className="text-info">Subtotal: {DZD.fr.format(total)}</span>
           <div className="card-actions">
             <Link to="/checkout" className="btn btn-primary btn-block">
               Go to checkout

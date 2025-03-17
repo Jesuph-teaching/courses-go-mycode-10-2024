@@ -1,4 +1,4 @@
-import userModel, { UserInstanceMethods } from "../models/user.js";
+import userModel, { type UserD } from "../models/user.js";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
@@ -47,9 +47,6 @@ export async function registerUser(req: Request, res: Response) {
   }
 }
 
-export function checkUser(
-  req: Request & { user?: UserI & UserInstanceMethods },
-  res: Response
-) {
+export function checkUser(req: Request & { user?: UserD }, res: Response) {
   res.json({ user: req.user?.toSimpleUser() });
 }
