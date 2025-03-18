@@ -1,5 +1,4 @@
-interface ProductI<ID = string> {
-  _id: ID;
+interface BaseProductI {
   name: string;
   description: string;
   price: {
@@ -8,6 +7,9 @@ interface ProductI<ID = string> {
   };
   stock: number;
   image?: string;
+}
+interface ProductI<ID = string> extends BaseProductI {
+  _id: ID;
   createdAt: string;
   updatedAt: string;
 }

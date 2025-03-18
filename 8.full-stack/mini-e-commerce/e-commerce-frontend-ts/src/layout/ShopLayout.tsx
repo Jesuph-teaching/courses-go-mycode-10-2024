@@ -8,6 +8,11 @@ export default function ShopLayout() {
   return (
     <ShopProvider>
       <div className="navbar bg-base-100 shadow-sm">
+        <div className="flex-1">
+          <a className="btn btn-ghost text-xl" href="/">
+            Mini E-COMMERCE
+          </a>
+        </div>
         <NavbarContent />
       </div>
 

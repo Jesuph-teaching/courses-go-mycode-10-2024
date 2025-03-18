@@ -38,7 +38,7 @@ export default function UserDrop() {
         {user ? (
           <>
             <li>
-              <Link to={"/dashboard"}>admin dashboard</Link>
+              <Link to={"/admin"}>admin dashboard</Link>
             </li>
             <li>
               <a

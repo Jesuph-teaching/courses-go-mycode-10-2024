@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout";
 import DashboardLayout from "./layout/DashboardLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminProducts from "./pages/admin/Products";
+import Orders from "./pages/admin/Orders";
 
 export default function Routers() {
   const { user } = useUser();
@@ -38,6 +39,7 @@ export default function Routers() {
         <Route index element={<Navigate to={"/admin/dashboard"} />} />
         <Route path="dashboard" Component={Dashboard} />
         <Route path="products" Component={AdminProducts} />
+        <Route path="orders" Component={Orders} />
       </Route>
       <Route
         path="/shop"

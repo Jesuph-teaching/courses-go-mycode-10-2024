@@ -61,3 +61,31 @@ export async function getMyOrders(
     res.status(400).json({ error: (e as Error).message });
   }
 }
+export async function getOrders(req: Request, res: Response) {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate(["cart.product", "userId"]);
+    res.json({
+      data: orders,
+      message: "Your orders has been found successfully",
+    });
+  } catch (e) {
+    res.status(400).json({ error: (e as Error).message });
+  }
+}
+export async function getOrder(req: Request, res: Response) {
+  try {
+    const orderId = req.params.orderId;
+    const order = await orderModel
+      .findById(orderId)
+      .populate(["cart.product", "userId"]);
+    if (!order) throw new Error("No product with ID");
+    res.json({
+      data: order,
+      message: "Your orders has been found successfully",
+    });
+  } catch (e) {
+    res.status(400).json({ error: (e as Error).message });
+  }
+}

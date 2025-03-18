@@ -2,25 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../api/endpoints/products";
 import ProductCard from "../components/ProductCard";
 import { useShop } from "../hooks";
+import Loading from "@client/components/Loading";
 
 export default function Products() {
   const { search, sorting } = useShop();
   const {
-    data: { data: products },
+    data: products,
     isFetching,
     isError,
     error,
   } = useQuery({
     queryFn: () => getProducts({ search, sorting }),
     queryKey: ["products", search, sorting.path, sorting.dir],
-    initialData: { data: [] },
+    initialData: [],
   });
-  if (isFetching)
-    return (
-      <div className="flex min-h-56 w-full items-center justify-center">
-        <span className="loading loading-xl" />
-      </div>
-    );
+  if (isFetching) return <Loading />;
   if (isError)
     return (
       <div className="card">

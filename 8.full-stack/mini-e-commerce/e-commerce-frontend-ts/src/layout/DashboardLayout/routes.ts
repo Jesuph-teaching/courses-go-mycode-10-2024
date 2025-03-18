@@ -6,17 +6,17 @@ export interface SidebarNav {
 export const sidebarNavs: SidebarNav[] = [
   {
     title: "dashboard",
-    icon: "icon-[solar--dashboard]",
+    icon: "icon-[solar--graph-bold-duotone]",
     path: "/admin/dashboard",
   },
   {
     title: "products",
-    icon: "icon-[solar--dashboard]",
+    icon: "icon-[solar--box-bold-duotone]",
     path: "/admin/products",
   },
   {
     title: "orders",
-    icon: "icon-[solar--dashboard]",
+    icon: "icon-[solar--cart-large-2-bold-duotone]",
     path: "/admin/orders",
   },
 ];

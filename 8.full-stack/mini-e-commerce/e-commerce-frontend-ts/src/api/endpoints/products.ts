@@ -9,5 +9,5 @@ export async function getProducts({ search, sorting }: ProductSearchI) {
   const response = await myAPIConfig.get<{ data: ProductI[] }>(
     "/products?" + searchParams.toString()
   );
-  return response.data;
+  return response.data.data;
 }

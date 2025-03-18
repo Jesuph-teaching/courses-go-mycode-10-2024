@@ -19,7 +19,6 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action: { type: string; payload: UserI | null }) => {
       const newUser = action.payload;
-      console.log(newUser);
       if (newUser) {
         state.user = newUser;
         state.isLoggedIn = true;
